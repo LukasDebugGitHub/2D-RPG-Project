@@ -51,8 +51,10 @@ public class Entity : MonoBehaviour
     protected void OnDrawGizmos()
     {
         // Ground check line
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         // Wall check line
+        Gizmos.color = Color.yellow;
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
     #endregion
