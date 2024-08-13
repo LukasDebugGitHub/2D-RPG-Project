@@ -12,6 +12,8 @@ public class EnemyState
     protected bool triggerCalled;
     protected float stateTimer;
 
+    protected Rigidbody2D rb;
+
     public EnemyState (Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)
     {
         this.enemyBase = _enemyBase;
@@ -27,6 +29,9 @@ public class EnemyState
     public virtual void Enter()
     {
         enemyBase.anim.SetBool(animBoolName, true);
+        
+        rb = enemyBase.rb;
+
         triggerCalled = false;
     }
 
