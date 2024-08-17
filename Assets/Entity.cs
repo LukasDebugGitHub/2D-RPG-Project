@@ -5,6 +5,8 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [Header("Collision info")]
+    public Transform attackCheck;
+    public float attackCheckRadius;
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
@@ -35,6 +37,11 @@ public class Entity : MonoBehaviour
 
     }
 
+    public virtual void Damage()
+    {
+        Debug.Log(gameObject.name + "was damaged");
+    }
+
     #region Velocity
     public void SetZeroVelocity() => rb.velocity = Vector2.zero;
     public void SetVelocity(float _xVelocity, float _yVelocity)
@@ -56,6 +63,9 @@ public class Entity : MonoBehaviour
         // Wall check line
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        // Attack check radius
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
 
