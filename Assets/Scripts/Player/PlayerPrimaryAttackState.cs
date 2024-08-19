@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPrimaryAttack : PlayerState
+public class PlayerPrimaryAttackState : PlayerState
 {
     private int comboCounter;
     private float lastTimeAttacked;
     private float attackDir;
 
-    public PlayerPrimaryAttack(Player _player, PlayerStateMachine _stateMachine, string animBoolName) : base(_player, _stateMachine, animBoolName)
+    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string animBoolName) : base(_player, _stateMachine, animBoolName)
     {
     }
 
@@ -16,15 +16,18 @@ public class PlayerPrimaryAttack : PlayerState
     {
         base.Enter();
 
+        xInput = 0; // bug fix on attack direction
+
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + player.comboWindow)
             comboCounter = 0;
         
         player.anim.SetInteger("ComboCounter", comboCounter);
 
+        attackDir = player.facingDir;
+
         if (xInput != 0)
             attackDir = xInput;
-        else
-            attackDir = player.facingDir;
+
 
         player.SetVelocity(player.attackMovement[comboCounter].x * attackDir, player.attackMovement[comboCounter].y);
 
