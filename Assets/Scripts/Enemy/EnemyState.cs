@@ -21,11 +21,6 @@ public class EnemyState
         this.animBoolName = _animBoolName;
     }
 
-    public virtual void Update()
-    {
-        stateTimer -= Time.deltaTime;
-    }
-
     public virtual void Enter()
     {
         enemyBase.anim.SetBool(animBoolName, true);
@@ -39,6 +34,10 @@ public class EnemyState
     {
         enemyBase.anim.SetBool(animBoolName, false);
 
+    }
+    public virtual void Update()
+    {
+        stateTimer -= Time.deltaTime;
     }
 
     public virtual void AnimationFinishTrigger()
