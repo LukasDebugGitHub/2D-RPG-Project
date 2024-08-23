@@ -17,8 +17,6 @@ public class Player : Entity
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
-    [SerializeField] private float dashCooldown;
-    private float dashTimer;
     public float dashDir {  get; private set; }
     
     [Header("Attack details")]
@@ -94,11 +92,8 @@ public class Player : Entity
         if (IsWallDetected())
             return;
 
-        dashTimer -= Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
-            dashTimer = dashCooldown;
             dashDir = Input.GetAxisRaw("Horizontal");
 
             if (dashDir == 0)
