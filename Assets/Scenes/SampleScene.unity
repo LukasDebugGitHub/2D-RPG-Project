@@ -703,7 +703,7 @@ MonoBehaviour:
   cooldown: 0
   clonePrefab: {fileID: 1796549793540942201, guid: 9f94f23ca692de246aac8a94c188f740, type: 3}
   cloneDuration: 1.5
-  canAttack: 0
+  canAttack: 1
 --- !u!114 &1023491157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,8 +718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   swordPrefab: {fileID: 6261878228892241017, guid: b4dea1cc540c8194f9577cc8c87931e6, type: 3}
-  launchForce: {x: 15, y: 15}
-  swordGravity: 4
+  launchForce: {x: 35, y: 25}
+  swordGravity: 4.5
   numberOfDots: 20
   spaceBeetwenDots: 0.07
   dotPrefab: {fileID: 3002944722205710723, guid: f675a94cfcf0a4e40b239595e79ab345, type: 3}
