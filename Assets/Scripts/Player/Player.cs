@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Player : Entity
@@ -13,6 +14,10 @@ public class Player : Entity
     public float wallSlideDownSpeed;
     public float wallJumpAirMoveTime;
     public Vector2 wallJumpForce;
+    [Space]
+    public float swordRetrunImpact;
+    public float moveTimeSwordCatch;
+    public float moveTimeSwordAim;
 
     [Header("Dash info")]
     public float dashSpeed;
@@ -92,8 +97,9 @@ public class Player : Entity
         sword = _newSword;
     }
 
-    public void ClearTheSword()
+    public void CatchTheSword()
     {
+        stateMachine.ChangeState(catchSword);
         Destroy(sword);
     }
 

@@ -10782,6 +10782,9 @@ MonoBehaviour:
   wallSlideDownSpeed: 8
   wallJumpAirMoveTime: 0.4
   wallJumpForce: {x: 5, y: 14}
+  swordRetrunImpact: 2
+  moveTimeSwordCatch: 0.15
+  moveTimeSwordAim: 0.2
   dashSpeed: 20
   dashDuration: 0.4
   comboWindow: 0.5
