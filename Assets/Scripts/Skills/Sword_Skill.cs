@@ -16,6 +16,7 @@ public class Sword_Skill : Skill
     public SwordType swordType = SwordType.Regular;
 
     [Header("Bounce info")]
+    [SerializeField] private float bounceSpeed;
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
 
@@ -23,6 +24,12 @@ public class Sword_Skill : Skill
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceGravity;
 
+    [Header("Spin info")]
+    [SerializeField] private float maxTravelDistance;
+    [SerializeField] private float spinDuration;
+    [SerializeField] private float spinGravity;
+    [SerializeField] private float hitCooldown;
+    [SerializeField] private float targetFollowSpeed;
 
     [Header("Skill info")]
     [SerializeField] private GameObject swordPrefab;
@@ -55,6 +62,8 @@ public class Sword_Skill : Skill
             swordGravity = bounceGravity;
         else if (swordType == SwordType.Pierce)
             swordGravity = pierceGravity;
+        else if(swordType == SwordType.Spin)
+            swordGravity = spinGravity;
     }
 
     protected override void Update()
@@ -79,9 +88,11 @@ public class Sword_Skill : Skill
 
 
         if (swordType == SwordType.Bounce)
-            newSwordScript.SetupBounce(true, bounceAmount);
+            newSwordScript.SetupBounce(true, bounceAmount, bounceSpeed);
         else if (swordType == SwordType.Pierce)
             newSwordScript.SetupPierce(pierceAmount);
+        else if(swordType == SwordType.Spin)
+            newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown, targetFollowSpeed);
 
 
 
