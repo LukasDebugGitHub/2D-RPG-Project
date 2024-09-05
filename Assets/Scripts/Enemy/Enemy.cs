@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Enemy : Entity
 {
     [SerializeField] protected LayerMask whatIsPlayer;
+
     [Header("Stunned info")]
     public float stunDuration;
     public Vector2 stunDirection;
@@ -16,6 +17,7 @@ public class Enemy : Entity
     public float moveSpeed;
     public float idleTime;
     public float battleTime;
+    private float defaultMoveSpeed;
 
     [Header("Attack info")]
     public float attackDistance;
@@ -29,6 +31,8 @@ public class Enemy : Entity
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
+
+        defaultMoveSpeed = moveSpeed;
     }
 
     protected override void Update()
@@ -38,6 +42,32 @@ public class Enemy : Entity
         stateMachine.currentState.Update();
     }
 
+
+    public virtual void FreezeTime(bool _timeFrozen)
+    {
+        if (_timeFrozen)
+        {
+            moveSpeed = 0f;
+            anim.speed = 0f;
+        }
+        else
+        {
+            moveSpeed = defaultMoveSpeed;
+            anim.speed = 1f;
+        }
+    }
+
+    protected virtual IEnumerator FreezeTimerFor(float _seconds)
+    {
+        FreezeTime(true);
+
+        yield return new WaitForSeconds(_seconds);
+
+        FreezeTime(false);
+    }
+
+
+    #region Counter Attack Window
     public virtual void OpenCounterAttackWindow()
     {
         canBeStunned = true;
@@ -49,6 +79,7 @@ public class Enemy : Entity
         canBeStunned = false;
         counterImage.SetActive(false);
     }
+    #endregion
 
     public virtual bool CanBeStunned()
     {

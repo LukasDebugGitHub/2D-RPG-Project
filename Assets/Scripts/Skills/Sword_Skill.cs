@@ -35,6 +35,9 @@ public class Sword_Skill : Skill
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchForce;
     [SerializeField] private float swordGravity;
+    [SerializeField] private float freezeTimeDuration;
+    [SerializeField] private float returnSpeed;
+    [SerializeField] private float swordDestroyTime;
 
 
     private Vector2 finalDir;
@@ -96,7 +99,7 @@ public class Sword_Skill : Skill
 
 
 
-        newSwordScript.SetupSword(finalDir, swordGravity, player);
+        newSwordScript.SetupSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed, swordDestroyTime);
 
         player.AssignNewSword(newSword);
 
